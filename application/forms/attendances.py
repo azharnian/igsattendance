@@ -4,10 +4,16 @@ from wtforms import StringField, EmailField, PasswordField, SelectField, Boolean
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class CreateAttendanceForm(FlaskForm):
-    pass
+    methods = SelectField('Method')
+    card_number = StringField('Your ID Number')
+    submit = SubmitField('Enter')
 
 class CreateManualAttendanceForm(FlaskForm):
-    pass
+    student_number = StringField('Student Number')
+    status = SelectField('Status')
+    evidence = FileField('Evidence')
+    note = StringField('Note')
+    submit = SubmitField('Enter')
 
 class UpdateAttendanceForm(FlaskForm):
     pass

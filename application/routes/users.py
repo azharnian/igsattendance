@@ -9,7 +9,7 @@ users = Blueprint('users', __name__)
 #SESSION
 @users.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    return str(True)
 
 @users.route('/logout')
 @login_required
@@ -23,7 +23,7 @@ def logout():
 @users.route('/')
 @login_required
 def index():
-    pass
+    return True
 
 @users.route('/profile')
 @login_required

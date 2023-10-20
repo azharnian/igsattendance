@@ -1,8 +1,15 @@
 from application import create_app
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def main():
+    PORT = os.environ.get('PORT_DEV')
+    DEBUG = os.environ.get('FLASK_DEBUG')
+    HOST = os.environ.get('HOST_DEV')
     app = create_app()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=HOST, port=PORT, debug=DEBUG)
 
 
 if __name__ == '__main__':

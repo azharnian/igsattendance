@@ -1,9 +1,8 @@
 ### Flask ###
-instance/*
+# instance/*
 !instance/.gitignore
 .webassets-cache
 .env
-Dockerfile*
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
@@ -70,7 +69,7 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
+# instance/
 
 # Scrapy stuff:
 .scrapy
