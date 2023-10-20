@@ -14,7 +14,7 @@
 
 ### Prerequisites
 
-List any software or dependencies that you need to install before you can run this web application.
+List of dependencies that you will need to install before you can run this web application.
 
 - Python (version 3.10 or latest) using DOCKER Image
 - Other dependencies (requirements.txt) using DOCKER Image
@@ -47,8 +47,6 @@ List any software or dependencies that you need to install before you can run th
 - Redis Memory Cache using DOCKER Image
 
 ### Development Installation
-
-Provide step-by-step instructions for installing and running your application.
 
 1. Clone the repository and Create Python Environment:
 
