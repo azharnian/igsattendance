@@ -62,22 +62,22 @@ Provide step-by-step instructions for installing and running your application.
     ```bash
     source env/Scripts/activate
  
-2. Linux / Mac using Terminal
+3. Linux / Mac using Terminal
 
    ```bash
     source env/bin/activate
 
-3. Install python library and dependencies
+4. Install python library and dependencies
 
     ```bash
     pip install -r requirments.txt
 
-4. Set .env, create env variables from file application/config.py
+5. Set .env, create env variables from file application/config.py or copy from copy_of_env
 
     ```bash
     touch .env
 
-5. Initialize Flask-Migrate for Database
+6. Initialize Flask-Migrate for Database
 
     ```bash
     flask db init
