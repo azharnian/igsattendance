@@ -1,20 +1,33 @@
+from flask import render_template, redirect, url_for, request, flash
 from flask import Blueprint
-from flask_login import login_required
+from flask_login import login_required, login_user, logout_user
 
 from application.forms.users import *
 from application.utils.users import *
+from application.resources.users import *
 
 users = Blueprint('users', __name__)
 
 #SESSION
 @users.route('/login', methods=['GET', 'POST'])
 def login():
-    return str(True)
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = get_user_by_username(form.username.data)
+        print(user)
+        if user and user.password == form.password.data:
+            login_user(user)
+            next_url = request.args.get('next') or url_for('index')
+            flash('Login Successful.', 'success')
+            return redirect(next_url)
+        flash('Sorry, Login Failed.', 'danger')
+    return render_template('pages/login.html', form=form)
 
 @users.route('/logout')
 @login_required
 def logout():
-    pass
+    logout_user()
+    return redirect(url_for('users.login'))
 
 
 #USER_PAGE
@@ -23,7 +36,7 @@ def logout():
 @users.route('/')
 @login_required
 def index():
-    return True
+    return render_template("index.html")
 
 @users.route('/profile')
 @login_required

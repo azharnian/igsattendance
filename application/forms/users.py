@@ -14,6 +14,7 @@ class UpdateRoleForm(CreateRoleForm):
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=4)])
+    remember = BooleanField('Ingat Saya')
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
@@ -90,21 +91,25 @@ class UpdateAcademicYear(CreateAcademicYear):
     submit = SubmitField('Update Academic Year')
 
 class CreateClassTypeForm(FlaskForm):
-    pass
+    class_code = StringField('Class Code')
+    class_type = StringField('Class Type')
+    academic_year = SelectField('Academic Year')
+    submit = SubmitField('Create')
 
 class UpdateClassTypeForm(CreateClassTypeForm):
-    pass
+    active = BooleanField('Active')
+    submit = SubmitField('Update')
 
 class CreateClassForm(FlaskForm):
     class_name = StringField('Class', validators=[DataRequired()])
     class_type = SelectField('Class Type')
     room = SelectField('Room')
-    active = BooleanField('Active')
     note = StringField('Note', validators=[DataRequired()])
-    submit = SubmitField('Create Cohort')
+    submit = SubmitField('Create')
 
 class UpdateClassForm(CreateClassForm):
-    pass
+    active = BooleanField('Active')
+    submit = SubmitField('Update')
 
 class CreateClassMemberForm(FlaskForm):
     class_name = SelectField('Class Name')

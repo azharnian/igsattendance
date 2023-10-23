@@ -12,12 +12,13 @@ class Role(db.Model):
     role_name = db.Column(db.String(256), unique=True, nullable=False)
     active = db.Column(db.Boolean, default=True)
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
-    created_by = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, default=0)
+    # created_by = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, default=0)
 
 class User(db.Model, UserMixin): 
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(256), nullable=False)
+    username = db.Column(db.String(256), unique=True, nullable=False)
     email = db.Column(db.String(256), unique=True, nullable=False)
     password = db.Column(db.String(256), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=False, default=0)
@@ -73,7 +74,7 @@ class ClassType(db.Model):
     __tablename__ ="class_types"
     #regular, mulok, ekskul
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.String(256), unique=True, nullable=False)
+    class_code = db.Column(db.String(256), unique=True, nullable=False)
     class_type = db.Column(db.String(256), unique=True, nullable=False)
     academic_year_id = db.Column(db.Integer, db.ForeignKey("academic_years.id"), nullable=False)
     active = db.Column(db.Boolean, default=True)
