@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, jsonify, flash, request
 from flask import Blueprint
 from flask_login import login_required, login_user, logout_user
 
@@ -17,17 +17,41 @@ def login():
         user = data['user']
         if user and user.password == form.password.data:
             login_user(user)
-            next_url = request.args.get('next') or url_for('index')
+            next_url = request.args.get('next') or url_for('users.index')
             flash('Login Successful.', 'success')
             return redirect(next_url)
         flash('Sorry, Login Failed.', 'danger')
-    return render_template('pages/login.html', form=form)
+    return render_template('pages/login.html', title='Login', form=form)
 
 @users.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('users.login'))
+
+@users.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Get form data
+        fullname = form.fullname.data
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+
+        data_json = jsonify({
+            'fullname': fullname,
+            'username': username,
+            'email': email,
+            'password': password
+        })
+
+        response = create_user(data_json)
+        flash(response.get_json()['message'], 'success')
+        if response.status_code == 201:
+            return redirect(url_for('users.login'))
+
+    return render_template('pages/register.html', title='Registration', form=form)
 
 
 #USER_PAGE
@@ -41,10 +65,6 @@ def index():
 @users.route('/profile')
 @login_required
 def profile():
-    pass
-
-@users.route('/register', methods=['GET', 'POST'])
-def register():
     pass
 
 @users.route('/forgot', methods=['GET', 'POST'])

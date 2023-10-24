@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(256), unique=True, nullable=False)
     password = db.Column(db.String(256), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=False, default=0)
+    # created_date = db.Column(db.DateTime, default=datetime.utcnow)
 
 class AuthType(db.Model):
     # barcode, nfc, face, etc

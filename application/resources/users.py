@@ -1,3 +1,4 @@
+from flask import jsonify, make_response
 from application.models.users import *
 
 ##ROLE
@@ -69,7 +70,7 @@ def delete_role(role_id):
 
 # Create a new User
 def create_user(data_json):
-    data = data_json
+    data = data_json.json
     user = User(
         fullname=data['fullname'],
         username=data['username'],
@@ -79,7 +80,7 @@ def create_user(data_json):
     )
     db.session.add(user)
     db.session.commit()
-    return {"message": "User created successfully"}, 201
+    return make_response(jsonify({"message": "User created successfully"}), 201)
 
 # Read all Users
 def get_users():

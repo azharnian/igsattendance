@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
     {% if title %}
-	<title>IGS Attendance System - {{ title }}</title>
+	<title>{{ title }} - IGS Attendance System</title>
 	{% else %}
 	<title>IGS Attendance System</title>
 	{% endif %}
@@ -29,6 +29,11 @@
         {% include "components/footer.html" %}
     </div>
 </body>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 <script src="{{ url_for('static', filename='/script.js') }}"></script>
 <script src="{{ url_for('static', filename='/bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
 </html>
