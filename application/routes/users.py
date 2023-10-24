@@ -13,8 +13,8 @@ users = Blueprint('users', __name__)
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = get_user_by_username(form.username.data)
-        print(user)
+        data = get_user_login(form.username.data)
+        user = data['user']
         if user and user.password == form.password.data:
             login_user(user)
             next_url = request.args.get('next') or url_for('index')

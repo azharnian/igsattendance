@@ -12,7 +12,7 @@ class Event(db.Model):
     note = db.Column(db.String(256))
 
 class Component(db.Model):
-    # User, Location, Attendance
+    # User, Location, Attendance, Log
     __tablename__ = "components"
     id = db.Column(db.Integer, primary_key=True)
     component_name = db.Column(db.String(256), unique=True, nullable=False)

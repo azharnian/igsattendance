@@ -12,8 +12,7 @@ class Role(db.Model):
     role_name = db.Column(db.String(256), unique=True, nullable=False)
     active = db.Column(db.Boolean, default=True)
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
-    # created_by = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, default=0)
-
+    
 class User(db.Model, UserMixin): 
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
